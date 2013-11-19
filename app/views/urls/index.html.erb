@@ -1,10 +1,7 @@
 <div class="container">
   <h1>Url Index!</h1>
 
-  <%= link_to "Sign In", signin_path %>
-  <%= link_to "Sign Up", signup_path %>
-
-  <%= form_for :url, url: { action: :create } do |f| %>
+  <%= form_for :url, url: urls_path do |f| %>
     <div>
       <%= f.label :long_url %>
       <%= f.text_field :long_url %>

@@ -20,6 +20,7 @@
   padding-right:20px;
   padding-left:20px;
   height:40px;
+  background-color:#FFA961;
   text-align:right;
 }
 
@@ -27,13 +28,13 @@
   position:relative;
   line-height:40px;
   text-decoration:none;
-  color:black;
+  color:white;
   margin-left:5px;
   margin-right:5px;
 }
 
 .top-nav a:hover {
-  color:gray;
+  color:#5B2900;
 }
 
 .container {
@@ -42,4 +43,9 @@
   padding:0px 20px 20px 20px;
   border:1px dotted black;
   position:relative;
+}
+
+.home-link {
+  float:left;
+  font-size:20px;
 }

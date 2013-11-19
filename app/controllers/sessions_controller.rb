@@ -7,13 +7,14 @@ class SessionsController < ApplicationController
     @user = User.find_by_email(params[:session][:email].downcase)
     if @user
       if @user.authenticate(params[:session][:password])
-        session[:user_id] = user.id
-        redirect_to ###
+        session[:user_id] = @user.id
+        redirect_to urls_path
       else
         @user.errors.add(:password, 'incorrect')
         render :new
       end
     else
+      @user = User.new
       @user.errors.add(:email, 'not found')
       render :new
     end

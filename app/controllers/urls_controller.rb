@@ -1,19 +1,32 @@
 class UrlsController < ApplicationController
+  include SessionsHelper
+
   def index
-    @urls = Url.where(user_id: nil)
+    if signed_in?
+      @urls = Url.where(user_id: current_user)
+    else
+      @urls = Url.where(user_id: nil)
+    end
     @url = Url.new()
   end
 
   def create
     @url = Url.new(params[:url])
-    if @url.save
-      # redirect to root if not signed in
-      # else redirect to users profile page
-      redirect_to urls_path
+    if signed_in?
+      @url.user_id = current_user.id
+      if @url.save
+        redirect_to urls_path
+      else
+        @urls = Url.where(user_id: current_user)
+        render :index
+      end
     else
-      @urls = Url.where(user_id: nil)
-      render :index
-      # redirect_to urls_path
+      if @url.save
+        redirect_to urls_path
+      else
+        @urls = Url.where(user_id: nil)
+        render :index
+      end
     end
   end
 

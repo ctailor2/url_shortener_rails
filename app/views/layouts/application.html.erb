@@ -10,10 +10,12 @@
 
 <%= yield %>
 <div class="top-nav">
-  <%= link_to "Sign Up", signup_path %>
-  <% if logged_in? %>
+  <%= link_to "Url Shortener", urls_path, class: "home-link" %>
+  <% if signed_in? %>
+    <%= link_to "My Profile", user_path(current_user) %>
     <%= link_to "Sign Out", signout_path, method: :delete %>
   <% else %>
+    <%= link_to "Sign Up", signup_path %>
     <%= link_to "Sign In", signin_path %>
   <% end %>
 </div>

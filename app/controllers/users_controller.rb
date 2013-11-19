@@ -30,4 +30,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    session.clear
+    @user.destroy
+    redirect_to urls_path
+  end
+
 end
