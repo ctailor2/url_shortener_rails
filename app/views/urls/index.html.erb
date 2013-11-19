@@ -1,38 +1,40 @@
-<h1>Url Index!</h1>
+<div class="container">
+  <h1>Url Index!</h1>
 
-<%= link_to "Sign In", signin_path %>
-<%= link_to "Sign Up", signup_path %>
+  <%= link_to "Sign In", signin_path %>
+  <%= link_to "Sign Up", signup_path %>
 
-<%= form_for :url, url: { action: :create } do |f| %>
-  <div>
-    <%= f.label :long_url %>
-    <%= f.text_field :long_url %>
-    <%= f.submit %>
-  </div>
-<% end %>
+  <%= form_for :url, url: { action: :create } do |f| %>
+    <div>
+      <%= f.label :long_url %>
+      <%= f.text_field :long_url %>
+      <%= f.submit %>
+    </div>
+  <% end %>
 
-<br>
+  <br>
 
-<div class="errors_explanation">
-  <% if @url.errors.any? %>
-    <% @url.errors.full_messages.each do |message| %>
-      <p><%= message %></p>
+  <div class="errors_explanation">
+    <% if @url.errors.any? %>
+      <% @url.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
+
+  <br>
+
+  <table border="1" cellpadding="10">
+    <tr>
+      <th>Link</th>
+      <th>Visits</th>
+    </tr>
+    <% @urls.sort_by! { |url| url.click_count } %>
+    <% @urls.reverse_each do |url| %>
+    <tr>
+      <td><%= link_to "#{url.short_url}", url, method: :put %></td>
+      <td><%= url.click_count %></td>
+    </tr>
+    <% end %>
+  </table>
 </div>
-
-<br>
-
-<table border="1" cellpadding="10">
-  <tr>
-    <th>Link</th>
-    <th>Visits</th>
-  </tr>
-  <% @urls.sort_by! { |url| url.click_count } %>
-  <% @urls.reverse_each do |url| %>
-  <tr>
-    <td><%= link_to "#{url.short_url}", url, method: :put %></td>
-    <td><%= url.click_count %></td>
-  </tr>
-  <% end %>
-</table>

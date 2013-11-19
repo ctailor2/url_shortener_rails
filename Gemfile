@@ -7,6 +7,7 @@ gem 'rails', '3.2.15'
 
 gem 'pg'
 
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 gem 'faker'
 

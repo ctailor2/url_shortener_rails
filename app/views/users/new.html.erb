@@ -1,27 +1,13 @@
-<h1>Sign Up</h1>
+<div class = "container">
+  <h1>Sign Up</h1>
 
-<%= form_for(@user) do |f| %>
-  <p>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+  <%= render 'form' %>
 
-<div class="errors_explanation">
-  <% if @user.errors.any? %>
-    <% @user.errors.full_messages.each do |message| %>
-      <p><%= message %></p>
+  <div class="errors_explanation">
+    <% if @user.errors.any? %>
+      <% @user.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
